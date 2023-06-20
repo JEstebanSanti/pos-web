@@ -1,3 +1,7 @@
+<?php 
+    $env = getenv("HOST_NAME", true);
+    var_dump($env);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
