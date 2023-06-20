@@ -1,6 +1,6 @@
 <?php
     $inserted = '';
-    $inserted = $_GET["inserted"];
+    $inserted = $_GET["inserted"] ?? null;
     //$con = new mysqli('localhost','id20924423_jban77', 'Jorgeesteban$santi1', 'id20924423_pos1');
     $con = new mysqli('localhost',  'jban', '', 'pos');
     
@@ -38,7 +38,9 @@
               "</td>"."<td>". 
               $fila["precio"] .
                "</td>". 
-               "<td><a href='delete.php?id={$fila['id']}'><img src='./img/trash_bin_icon-icons.com_67981.png'></a></td>". "<td><img src='./img/notes_edit_modify_icon_143729.png'></td>". "</tr>";
+               "<td><a href='delete.php?id={$fila['id']}'><img src='./img/trash_bin_icon-icons.com_67981.png'></a></td>". 
+               "<td><a href='update.php?id={$fila['id']}'><img src='./img/notes_edit_modify_icon_143729.png'></a></td>".
+            "</tr>";
         }
         echo "</table>";
 
@@ -62,14 +64,12 @@
     </h1>
     <?php 
         $eliminado = '';
-        $eliminado = $_GET["mensaje"];
+        $eliminado = $_GET["mensaje"]??null;
         if($eliminado === '1'){
             echo "Eliminado correctamente";
         }
         if($inserted==='true'){
             echo "producto Agregado Correctamente";
-        }else{
-            echo "producto NO Fue Agregado";
         }
     ?>
     <form action="./insert-producto.php" method="post">
