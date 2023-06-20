@@ -1,6 +1,9 @@
 <?php
-    //$mensaje = $_GET["inserted"] ?? null;
-    $con = new mysqli('localhost','id20924423_jban77', 'Jorgeesteban$santi1', 'id20924423_pos1');
+    $inserted = '';
+    $inserted = $_GET["inserted"];
+    //$con = new mysqli('localhost','id20924423_jban77', 'Jorgeesteban$santi1', 'id20924423_pos1');
+    $con = new mysqli('localhost',  'jban', '', 'pos');
+    
     if(!$con){
         die("No Se pudo Conectar con la Base de datos" . mysqli_error($con));
     }
@@ -29,7 +32,13 @@
             var_dump($fila);
             echo "</pre >";*/
             
-            echo "<tr>" . "<td>". $fila["codigo"] . "</td>". "<td>". $fila["nombre"] . "</td>"."<td>". $fila["precio"] . "</td>". "<td><img src='./img/trash_bin_icon-icons.com_67981.png'></td>". "<td><img src='./img/notes_edit_modify_icon_143729.png'></td>". "</tr>";
+            echo "<tr>" . "<td>". $fila["codigo"] 
+            . "</td>". "<td>".
+             $fila["nombre"] .
+              "</td>"."<td>". 
+              $fila["precio"] .
+               "</td>". 
+               "<td><a href='delete.php?id={$fila['id']}'><img src='./img/trash_bin_icon-icons.com_67981.png'></a></td>". "<td><img src='./img/notes_edit_modify_icon_143729.png'></td>". "</tr>";
         }
         echo "</table>";
 
@@ -52,13 +61,16 @@
         Administracion de Productos
     </h1>
     <?php 
-        /*if($mensaje === null);
-        if($mensaje){
-            echo "Producto Insertado con exito";
+        $eliminado = '';
+        $eliminado = $_GET["mensaje"];
+        if($eliminado === '1'){
+            echo "Eliminado correctamente";
         }
-        if(!$mensaje){
-            echo "ERROR Producto NO Insertado";
-        }*/
+        if($inserted==='true'){
+            echo "producto Agregado Correctamente";
+        }else{
+            echo "producto NO Fue Agregado";
+        }
     ?>
     <form action="./insert-producto.php" method="post">
         <fieldset style="width: 100px; background-color:#FEFFBE">
