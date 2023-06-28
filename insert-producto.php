@@ -9,7 +9,7 @@ try {
     $query = "INSERT INTO productos(id, codigo, nombre, precio) VALUES (null, '$codigo', '$nombre', $precio);";
     $command = mysqli_query($con, $query);
     if($command){
-        header("Location: productos.php?inserted=true");
+        header("Location: https://jestebansantti.000webhostapp.com/productos.php");
     }else{
         header("Location: productos.php?inserted=false");
     }

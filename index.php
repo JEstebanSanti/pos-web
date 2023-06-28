@@ -1,3 +1,6 @@
+<?php 
+    $error = $_GET['log']?? null;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +12,9 @@
 <body>
     <h1>Dashboard POS-JBAN</h1>
     <div>
-        <form action="productos.php">
-            <input type="text" placeholder="usuario" require>
-            <input type="password" placeholder="contraseña" requiere> 
+        <form action="validar.php" method="post">
+            <input name = 'usuario' type="text" placeholder="usuario" require>
+            <input name= 'pass' type="password" placeholder="contraseña" requiere> 
             <input type="submit" value="Entrar" >
         </form>
         

@@ -1,9 +1,10 @@
 <?php 
     $id = $_GET["id"] ?? null;
+    include './includes/functions.php';
+    
     //$con = new mysqli('localhost', 'id20924423_jban77', 'Jorgeesteban$santi1', 'id20924423_pos1');
     $con = new mysqli('localhost',  'jban', '', 'pos');
     $query = "SELECT * FROM usuarios WHERE id_usuario = $id";
-    echo $query;
     $res = mysqli_query($con, $query);
     
     if($_SERVER["REQUEST_METHOD"] === "POST"){
@@ -25,11 +26,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>productos</title>
+    <title>usuarios</title>
 </head>
+<?php templateHeader()?>
 <body style="background-color: #EBD494;">
     <h1>
-        MODIFICAR Productos
+        MODIFICAR USUARIOS
     </h1>
     <form method="post">
         <?php while($row = mysqli_fetch_assoc($res)):?>

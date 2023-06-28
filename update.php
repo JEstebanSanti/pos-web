@@ -1,4 +1,5 @@
 <?php 
+    include './includes/functions.php';
     $id = $_GET["id"] ?? null;
     //$con = new mysqli('localhost', 'id20924423_jban77', 'Jorgeesteban$santi1', 'id20924423_pos1');
     $con = new mysqli('localhost',  'jban', '', 'pos');
@@ -28,6 +29,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>productos</title>
 </head>
+<?php templateHeader()?>
 <body style="background-color: #EBD494;">
     <h1>
         MODIFICAR Productos

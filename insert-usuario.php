@@ -12,9 +12,9 @@ try {
     $command = mysqli_query($con, $query);
     print_r($command);
     if($command){
-        header("Location: usuarios.php?inserted=true");
+        header("Location: https://jestebansantti.000webhostapp.com/usuarios.php");
     }else{
-        header("Location: usuarios.php?inserted=false");
+        header("Location: ./usuarios.php");
     }
     
 }catch (Exception $th) {
