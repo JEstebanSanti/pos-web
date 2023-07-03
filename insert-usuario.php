@@ -8,14 +8,13 @@
     $rfc = $_POST["rfc"];
 
 try {
-    //$con = new mysqli('localhost', 'id20924423_jban77', 'Jorgeesteban$santi1', 'id20924423_pos1');
-    $con = new mysqli('localhost',  'jban', '', 'pos') or die("no se establecio conexion");
+    $con = new mysqli('localhost', 'id20924423_jban77', 'Jorgeesteban$santi1', 'id20924423_pos1');
+    //$con = new mysqli('localhost',  'jban', '', 'pos') or die("no se establecio conexion");
     $query = "INSERT INTO usuarios(nombre, apellidos, pass, rfc) VALUES ('$nombre', '$apellidos', '$contraseña', '$rfc');";
     echo $query;
     $command = mysqli_query($con, $query);
-    print_r($command);
     if($command){
-        header("Location: https://jestebansantti.000webhostapp.com/usuarios.php");
+        header("Location: ./usuarios.php");
     }else{
         header("Location: ./usuarios.php");
     }

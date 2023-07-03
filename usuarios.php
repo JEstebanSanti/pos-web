@@ -4,8 +4,8 @@
     validarSession();
 
     //$inserted = $_GET["inserted"] ?? null;
-    //$con = new mysqli('localhost','id20924423_jban77', 'Jorgeesteban$santi1', 'id20924423_pos1');
-    $con = new mysqli('localhost',  'jban', '', 'pos');
+    $con = new mysqli('localhost','id20924423_jban77', 'Jorgeesteban$santi1', 'id20924423_pos1');
+    //$con = new mysqli('localhost',  'jban', '', 'pos');
     
     if(!$con){
         die("No Se pudo Conectar con la Base de datos" . mysqli_error($con));

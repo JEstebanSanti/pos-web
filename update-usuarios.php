@@ -6,8 +6,8 @@
 
     $id = $_GET["id"] ?? null;
     
-    //$con = new mysqli('localhost', 'id20924423_jban77', 'Jorgeesteban$santi1', 'id20924423_pos1');
-    $con = new mysqli('localhost',  'jban', '', 'pos');
+    $con = new mysqli('localhost', 'id20924423_jban77', 'Jorgeesteban$santi1', 'id20924423_pos1');
+    //$con = new mysqli('localhost',  'jban', '', 'pos');
     $query = "SELECT * FROM usuarios WHERE id_usuario = $id";
     $res = mysqli_query($con, $query);
     
