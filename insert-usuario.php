@@ -1,8 +1,11 @@
 <?php
-$nombre = $_POST["nombre"];
-$apellidos = $_POST["apellidos"];
-$contraseña = $_POST["contraseña"];
-$rfc = $_POST["rfc"];
+    include './includes/functions.php';
+    session_start();
+    validarSession();
+    $nombre = $_POST["nombre"];
+    $apellidos = $_POST["apellidos"];
+    $contraseña = $_POST["contraseña"];
+    $rfc = $_POST["rfc"];
 
 try {
     //$con = new mysqli('localhost', 'id20924423_jban77', 'Jorgeesteban$santi1', 'id20924423_pos1');

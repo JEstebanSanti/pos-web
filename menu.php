@@ -1,4 +1,9 @@
-<?php include './includes/functions.php'?>
+<?php 
+    include './includes/functions.php';
+    session_start();
+    validarSession();    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +12,7 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <?php templateHeader()?>
+    <?php templateHeader($_SESSION['user'][1]);?>
     <footer></footer>
 </body>
 </html>

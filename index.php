@@ -1,5 +1,7 @@
 <?php 
     $error = $_GET['log']?? null;
+    $errorLogin = $_GET['err']?? null;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +13,14 @@
 </head>
 <body>
     <h1>Dashboard POS-JBAN</h1>
+    <?php 
+        if(isset($errorLogin)){
+            echo "<p>ACCESO DENEGADO</p>";
+        }
+        if(isset($error)){
+            echo "<p>Credenciales Incorrectas</p>";
+        }
+    ?>
     <div>
         <form action="validar.php" method="post">
             <input name = 'usuario' type="text" placeholder="usuario" require>

@@ -1,4 +1,9 @@
 <?php
+    include './includes/functions.php';
+
+    session_start();
+    validarSession();
+
     $codigo = $_POST["codigo"];
     $nombre = $_POST["nombre"];
     $precio = $_POST["precio"];

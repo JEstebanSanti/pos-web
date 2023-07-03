@@ -1,6 +1,10 @@
 <?php 
-    $id = $_GET["id"] ?? null;
     include './includes/functions.php';
+
+    session_start();
+    validarSession();
+
+    $id = $_GET["id"] ?? null;
     
     //$con = new mysqli('localhost', 'id20924423_jban77', 'Jorgeesteban$santi1', 'id20924423_pos1');
     $con = new mysqli('localhost',  'jban', '', 'pos');
@@ -28,7 +32,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>usuarios</title>
 </head>
-<?php templateHeader()?>
+<?php templateHeader($_SESSION['user'][1])?>
 <body style="background-color: #EBD494;">
     <h1>
         MODIFICAR USUARIOS

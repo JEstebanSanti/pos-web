@@ -1,5 +1,8 @@
 <?php
     include './includes/functions.php';
+    session_start();
+    validarSession();
+
     //$inserted = $_GET["inserted"] ?? null;
     //$con = new mysqli('localhost','id20924423_jban77', 'Jorgeesteban$santi1', 'id20924423_pos1');
     $con = new mysqli('localhost',  'jban', '', 'pos');
@@ -20,7 +23,7 @@
 </head>
 <body style="background-color: #EBD494;">
     <?php 
-        templateHeader();
+        templateHeader($_SESSION['user'][1]);
 
         if(($res->num_rows) > 0){
             echo "<table border='1'>";
