@@ -1,6 +1,13 @@
 <?php
+include 'app.php';
 
-function templateHeader($user) {
+function incluirTemplate(string $nombre)
+{
+    include TEMPLATES_URL . "/$nombre.php";
+}
+
+function templateHeader($user)
+{
     echo "
         <header>
             <nav>
@@ -14,13 +21,15 @@ function templateHeader($user) {
             </div>
         </header>";
 }
-function validarSession() { 
-    if(!isset($_SESSION['user'])){
+function validarSession()
+{
+    if (!isset($_SESSION['user'])) {
         header('Location: index.php?err=true');
     }
 }
 
-function logout(){
-   session_destroy();
-   header('Location: ./index.php');
+function logout()
+{
+    session_destroy();
+    header('Location: ./index.php');
 }
