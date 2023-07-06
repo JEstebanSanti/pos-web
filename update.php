@@ -1,11 +1,13 @@
 <?php 
     include './includes/functions.php';
+    include './includes/config/db.php';
     session_start();
     validarSession();
 
     $id = $_GET["id"] ?? null;
     //$con = new mysqli('localhost', 'id20924423_jban77', 'Jorgeesteban$santi1', 'id20924423_pos1');
-    $con = new mysqli('localhost',  'jban', '', 'pos');
+    //$con = new mysqli('localhost',  'jban', '', 'pos');
+    $con = conDB();
     $query = "SELECT nombre,codigo ,precio FROM productos WHERE id = {$id}";
     $res = mysqli_query($con, $query);
     
@@ -23,20 +25,8 @@
             echo "<a href='./posjban/insert-producto.php'></a>";
         }
     }
+    incluirTemplate('header', $_SESSION['user'][1], 'Modificar Productos')
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>productos</title>
-</head>
-<?php templateHeader($_SESSION['user'][1])?>
-<body style="background-color: #EBD494;">
-    <h1>
-        MODIFICAR Productos
-    </h1>
     <form method="post">
         <?php while($row = mysqli_fetch_assoc($res)):?>
             
@@ -51,9 +41,4 @@
         <input type="submit" value="Modificar" >
         <?php endwhile; ?>
     </form>
-    <button>
-        <a href="./productos.php">Volver</a>
-
-    </button>
-</body>
-</html>
+<?php incluirTemplate('footer'); ?>

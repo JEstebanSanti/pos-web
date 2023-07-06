@@ -1,32 +1,23 @@
 <?php
     include './includes/functions.php';
+    include './includes/config/db.php';
     session_start();
     validarSession();
     
     $inserted = '';
     $inserted = $_GET["inserted"] ?? null;
-    $con = new mysqli('localhost','id20924423_jban77', 'Jorgeesteban$santi1', 'id20924423_pos1');
-    //$con = new mysqli('localhost',  'jban', '', 'pos');
-    
+    $con = conDB();
     if(!$con){
         die("No Se pudo Conectar con la Base de datos" . mysqli_error($con));
     }
     $query = "SELECT * FROM productos;";
     $res = mysqli_query($con, $query);
-   
+    
+    incluirTemplate('header',$_SESSION['user'][1], 'Productos');
     
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>productos</title>
-</head>
-<body style="background-color: #EBD494;">    
+
     <?php 
-        templateHeader($_SESSION['user'][1]);
         if(($res->num_rows) > 0){
 
             echo "<table border='1'>";
@@ -83,5 +74,4 @@
         <input type="submit" value="Agregar" >
     </form>
     
-</body>
-</html>
+<?php incluirTemplate('footer'); ?>

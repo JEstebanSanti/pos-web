@@ -1,10 +1,11 @@
 <?php
 include 'app.php';
 
-function incluirTemplate(string $nombre)
+function incluirTemplate(string $nombre, string $user='', string $pageTitle='')
 {
     include TEMPLATES_URL . "/$nombre.php";
 }
+
 
 function templateHeader($user)
 {
