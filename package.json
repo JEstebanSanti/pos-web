@@ -20,6 +20,7 @@
   "homepage": "https://github.com/JEstebanSanti/pos-web#readme",
   "dependencies": {
     "bootstrap": "^5.3.0",
+    "bootstrap-icons": "^1.10.5",
     "sass": "^1.63.6"
   }
 }
