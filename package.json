@@ -1,0 +1,26 @@
+{
+  "name": "posjban",
+  "version": "1.0.0",
+  "description": "app administrativa para un self pos",
+  "main": "index.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass",
+    "sass:watch": "sass --watch ./sass/styles.scss ./css/app.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JEstebanSanti/pos-web.git"
+  },
+  "author": "Jorge Esteban Santillan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JEstebanSanti/pos-web/issues"
+  },
+  "homepage": "https://github.com/JEstebanSanti/pos-web#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.0",
+    "bootstrap-icons": "^1.10.5",
+    "sass": "^1.63.6"
+  }
+}

@@ -1,87 +1,94 @@
 <?php
-    include './includes/functions.php';
-    session_start();
-    validarSession();
-    
-    $inserted = '';
-    $inserted = $_GET["inserted"] ?? null;
-    $con = new mysqli('localhost','id20924423_jban77', 'Jorgeesteban$santi1', 'id20924423_pos1');
-    //$con = new mysqli('localhost',  'jban', '', 'pos');
-    
-    if(!$con){
-        die("No Se pudo Conectar con la Base de datos" . mysqli_error($con));
-    }
-    $query = "SELECT * FROM productos;";
-    $res = mysqli_query($con, $query);
-   
-    
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>productos</title>
-</head>
-<body style="background-color: #EBD494;">    
-    <?php 
-        templateHeader($_SESSION['user'][1]);
-        if(($res->num_rows) > 0){
+include './includes/functions.php';
+include './includes/config/db.php';
+session_start();
+validarSession();
 
-            echo "<table border='1'>";
-            echo "<thead>
+$con = conDB();
+if (!$con) {
+    die("No Se pudo Conectar con la Base de datos");
+}
+$query = "SELECT * FROM productos;";
+$res = mysqli_query($con, $query);
+
+incluirTemplate('header', $_SESSION['user'][1], 'Productos');
+
+?>
+
+<?php
+$eliminado = $_GET["mensaje"] ?? null;
+$inserted = $_GET["inserted"] ?? null;
+
+if ($eliminado == '1') {
+    echo "<p>Eliminado correctamente</p>";
+}
+if ($inserted == '1') {
+    echo "<p class=''>producto Agregado Correctamente</p>";
+}
+if (($res->num_rows) > 0) {
+    echo "<div class='container text-center '>";
+    echo "<table class='table table-hover table-dark table-striped'>";
+    echo "<thead>
                     <tr>
-                        <th colspan='5'>Productos</th>
+                        <th scope='col' colspan='5'>Productos</th>
                     </tr>
                     <tr>
-                        <th>Codigo</th>
-                        <th>Nombre</th>
-                        <th>Precio</th>
-                        <th>Eliminar</th>
-                        <th>Modificar</th>
+                        <th scope='col'>Codigo</th>
+                        <th scope='col'>Nombre</th>
+                        <th scope='col'>Precio</th>
+                        <th scope='col'>Eliminar</th>
+                        <th scope='col'>Modificar</th>
                     </tr>
     
                 </thead>";
-    
-            while ($fila = mysqli_fetch_assoc($res)) {
-                echo "<tr>" . "<td>". $fila["codigo"] 
-                . "</td>". "<td>".
-                 $fila["nombre"] .
-                  "</td>"."<td>". 
-                  $fila["precio"] .
-                   "</td>". 
-                   "<td><a href='delete.php?id={$fila['id']}'><img src='./img/trash_bin_icon-icons.com_67981.png'></a></td>". 
-                   "<td><a href='update.php?id={$fila['id']}'><img src='./img/notes_edit_modify_icon_143729.png'></a></td>".
-                "</tr>";
-            }
-            echo "</table>";
-    
-        }
-        else{
-            echo "No hay Productos";
-        }
-        $eliminado = '';
-        $eliminado = $_GET["mensaje"]??null;
-        if($eliminado === '1'){
-            echo "Eliminado correctamente";
-        }
-        if($inserted==='true'){
-            echo "producto Agregado Correctamente";
-        }
-    ?>
-    <form action="./insert-producto.php" method="post">
-        <fieldset style="width: 100px; background-color:#FEFFBE">
-            <legend>Agregar Nuevo Producto</legend>
-            <label for="" name="codigo">Codigo</label>
-            <input type="text" name="codigo">
-            <label for="" name="nombre">Nombre</label>
-            <input type="text" name="nombre">
-            <label for="" name="precio">Precio</label>
-            <input type="text" name="precio">
-        </fieldset>
-        <input type="submit" value="Agregar" >
-    </form>
-    
-</body>
-</html>
+
+    while ($fila = mysqli_fetch_assoc($res)) {
+        echo "<tr>" . "<td>" . $fila["codigo"]
+            . "</td>" . "<td>" .
+            $fila["nombre"] .
+            "</td>" . "<td>" .
+            $fila["precio"] .
+            "</td>" .
+            "<td><a href='delete.php?id={$fila['id']}'><i class='bi bi-trash'></i></a></td>" .
+            "<td><a href='update.php?id={$fila['id']}'><i class='bi bi-pencil-square'></a></td>" .
+            "</tr>";
+    }
+    echo "</table>";
+    echo "</div>";
+} else {
+    echo "No hay Productos";
+}
+?>
+
+<div class="container">
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Nuevo
+    </button>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="./insert-producto.php" method="post">
+                    <fieldset>
+                        <label class="col-form-label" name="codigo">Codigo</label>
+                        <input class="mb-2 form-control" type="text" name="codigo">
+                        <label class="col-form-label" for="" name="nombre">Nombre</label>
+                        <input class="mb-2 form-control" type="text" name="nombre">
+                        <label class="col-form-label" for="" name="precio">Precio</label>
+                        <input class="mb-2 form-control" type="text" name="precio">
+                    </fieldset>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <input type="submit" value="agregar" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<?php incluirTemplate('footer'); ?>
